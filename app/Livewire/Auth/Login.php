@@ -11,23 +11,24 @@ class Login extends Component
     public $password = '';
     public $remember = false;
 
-    public function login(){
+    public function login()
+    {
         $credentials = $this->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ], [
-            'email.required' => 'O email é obrigatório',
+            'email.required' => 'O email é obrigatorio',
             'email.email' => 'Formato de email incorreto',
             'password.required' => 'Senha obrigatória'
         ]);
 
-        if(!Auth::attempt($credentials, $this->remember)){
+        if (!Auth::attempt($credentials, $this->remember)) {
             session()->flash('error', 'email e senha inválidos');
         }
 
         $user = Auth::user();
 
-        if($user->isAdmin()){
+        if (!$user->isAdmin()) {
             Auth::logout();
 
             request()->session()->invalidate();

@@ -38,7 +38,6 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.index')
-        ->layout('layouts.app', ['admin' => true]);
+        return view('livewire.dashboard.index')->layout('layouts.app', ['admin' => true]);
     }
 }
